@@ -66,25 +66,73 @@ li {
   border-radius: 10px;
 }
 
-.product-showcase .add-to-cart {
+.product-showcase .selected {
+  border: 2px solid var(--red);
+}
+
+.product-showcase button {
   position: absolute;
   bottom: -15px;
   left: 30px;
-
-  border: 1px solid var(--rose-500);
+  width: 175px;
+  height: 50px;
   border-radius: 30px;
   padding: 10px 25px;
-  background-color: var(--rose-50);
-  color: var(--rose-900);
   font-family: inherit;
   font-size: inherit;
   font-weight: 600;
+
+  transition: all 0.3s ease;
+}
+.product-showcase .add-to-cart {
+  border: 1px solid var(--rose-500);
+  background-color: var(--rose-50);
+  color: var(--rose-900);
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  z-index: 9999;
+}
+
+.product-showcase .add-to-cart:hover {
+  border: 1px solid var(--red);
+  color: var(--red);
+}
+
+.product-showcase .set-quantity {
+  background-color: var(--red);
+  color: var(--rose-50);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-showcase .set-quantity span {
+  border: 1px solid var(--rose-50);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-showcase .set-quantity span:hover {
+  background-color: var(--rose-50);
+  border: none;
+}
+
+.product-showcase .set-quantity span img {
+  width: 12px;
+}
+
+.product-showcase .set-quantity span:hover img {
+  filter: brightness(0.5);
 }
 
 .product-showcase .cart {
@@ -245,4 +293,8 @@ li {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s all;
+}
+
+.confirm-order:hover {
+  background-color: hsl(14, 90%, 28%);
 }

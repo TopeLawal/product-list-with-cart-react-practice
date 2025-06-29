@@ -1,17 +1,21 @@
+import Cart from "./Cart";
+import Order from "./Order";
 export default function CartList(props) {
   return (
-    <li className="cart-item-container">
-      <div>
-        <h4>{props.name}</h4>
-        <div className="price-container">
-          <p className="quantity">1x</p>
-          <p className="unit-price">@${props.price}</p>
-          <p className="total-price"> @$5.50</p>
-        </div>
-      </div>
-      <button className="remove-item">
-        <img src="./assets/images/icon-remove-item.svg" alt="remove-item" />
-      </button>
-    </li>
+    <div className="cart-section">
+      <h2>Your Cart (0)</h2>
+      {/*  <div className="cart-items-empty">
+        <img src="./assets/images/illustration-empty-cart.svg" alt="empty" />
+        <p>Your add items will appear here</p>
+      </div> */}
+
+      <ul className="cart-list-container">
+        {props.allProducts.map((product) => (
+          <Cart name={product.name} price={product.price} key={product.id} />
+        ))}
+      </ul>
+
+      <Order />
+    </div>
   );
 }
