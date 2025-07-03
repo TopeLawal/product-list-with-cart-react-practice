@@ -39,6 +39,12 @@ li {
   align-items: start;
   justify-content: center;
   gap: 30px;
+  position: relative;
+}
+
+.container .confirmed-order {
+  position: absolute;
+  margin: auto;
 }
 
 .container .product-section {
@@ -280,7 +286,7 @@ li {
   font-weight: 600;
 }
 
-.confirm-order {
+.order-btn {
   background-color: var(--red);
   color: var(--rose-50);
   border: none;
@@ -295,6 +301,72 @@ li {
   transition: all 0.3s all;
 }
 
-.confirm-order:hover {
+.order-btn:hover {
   background-color: hsl(14, 90%, 28%);
+}
+
+.confirmed-order {
+  background-color: #fff;
+  width: 450px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.confirmed-order > img {
+  width: 35px;
+  margin: 10px 0;
+}
+
+.confirmed-order > h1 {
+  color: var(--rose-900);
+  margin-bottom: 10px;
+}
+
+.confirmed-order > p {
+  color: var(--rose-500);
+  margin-bottom: 20px;
+}
+.confirmed-order .ordered-item-container {
+  background-color: var(--rose-50);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.confirmed-order .ordered-item {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rose-100);
+}
+
+.confirmed-order .ordered-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+}
+
+.confirmed-order .ordered-item h4 {
+  color: var(--rose-900);
+  margin-bottom: 5px;
+}
+
+.confirmed-order .ordered-item .order-price {
+  color: var(--rose-900);
+  font-weight: 600;
+}
+
+.confirmed-order .ordered-item .quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.confirmed-order .ordered-item .quantity-container .order-quantity {
+  color: var(--red);
+  font-weight: 600;
+}
+
+.confirmed-order .ordered-item .quantity-container .order-unit-price {
+  color: var(--rose-400);
+  font-weight: 500;
 }

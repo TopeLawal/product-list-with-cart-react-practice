@@ -1,16 +1,24 @@
 import Product from "./Product";
 
-export default function ProductList(props) {
+export default function ProductList({
+  allProducts,
+  cartItems,
+  onHandleAddToCart,
+  onHandleDecrement,
+  onHandleIncrement,
+  isProductInCart,
+}) {
   return (
     <ul className="product-list-container">
-      {props.allProducts.map((product) => (
+      {allProducts.map((product) => (
         <Product
-          image={product.image.desktop}
-          name={product.name}
-          category={product.category}
-          price={product.price}
-          id={product.id}
+          product={product}
           key={product.id}
+          cartItems={cartItems}
+          onHandleAddToCart={onHandleAddToCart}
+          onHandleDecrement={onHandleDecrement}
+          onHandleIncrement={onHandleIncrement}
+          isProductInCart={isProductInCart}
         />
       ))}
     </ul>

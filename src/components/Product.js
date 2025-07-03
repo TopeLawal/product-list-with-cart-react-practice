@@ -1,48 +1,35 @@
 import { useState } from "react";
 
-export default function Product(props) {
-  const [itemSelected, setItemSelected] = useState(false);
-  const [itemQuantity, setItemQuantity] = useState(0);
-
-  function handleAddToCart() {
-    setItemSelected(true);
+export default function Product({
+  product,
+  cartItems,
+  onHandleAddToCart,
+  onHandleDecrement,
+  onHandleIncrement,
+  isProductInCart,
+}) {
+  function getCartItem(productId) {
+    return cartItems.find((item) => item.id === productId);
   }
 
-  function handleDecrement(productId) {
-    if (productId === props.id) {
-      setItemQuantity((quantity) => {
-        if (quantity === 0) {
-          setItemQuantity(0);
-          setItemSelected(false);
-        }
-        return quantity - 1;
-      });
-    }
-  }
-
-  function handleIncrement(productId) {
-    if (productId === props.id) {
-      setItemQuantity((quantity) => quantity + 1);
-    }
-  }
   return (
     <li className="product-card">
       <div className="product-showcase">
         <img
-          className={itemSelected ? "selected" : ""}
-          src={props.image}
-          alt={props.name}
+          className={isProductInCart(product.id) ? "selected" : ""}
+          src={product.image.desktop}
+          alt={product.name}
         />
-        {itemSelected ? (
+        {isProductInCart(product.id) ? (
           <button className="set-quantity">
-            <span onClick={() => handleDecrement(props.id)}>
+            <span onClick={() => onHandleDecrement(product.id)}>
               <img
                 src="../assets/images/icon-decrement-quantity.svg"
                 alt="decrement"
               />
             </span>
-            <p>{itemQuantity}</p>
-            <span onClick={() => handleIncrement(props.id)}>
+            <p>{getCartItem(product.id).quantity}</p>
+            <span onClick={() => onHandleIncrement(product.id)}>
               <img
                 src="../assets/images/icon-increment-quantity.svg"
                 alt="increment"
@@ -50,7 +37,10 @@ export default function Product(props) {
             </span>
           </button>
         ) : (
-          <button className="add-to-cart" onClick={handleAddToCart}>
+          <button
+            className="add-to-cart"
+            onClick={() => onHandleAddToCart(product)}
+          >
             <span>
               <img
                 src="./assets/images/icon-add-to-cart.svg"
@@ -63,9 +53,9 @@ export default function Product(props) {
         )}
       </div>
       <div className="desc">
-        <p className="category">{props.category}</p>
-        <h4>{props.name}</h4>
-        <p className="price">${props.price}</p>
+        <p className="category">{product.category}</p>
+        <h4>{product.name}</h4>
+        <p className="price">${product.price}</p>
       </div>
     </li>
   );

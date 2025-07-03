@@ -1,10 +1,10 @@
-export default function Order() {
+import OrderButton from "./OrderButton";
+import OrderTotal from "./OrderTotal";
+
+export default function Order({ totalOrderPrice, onShowModal }) {
   return (
     <>
-      <div className="order-container">
-        <p>Order Total</p>
-        <h2>$46.50</h2>
-      </div>
+      <OrderTotal totalOrderPrice={totalOrderPrice} />
       <div className="carbon-neutral">
         <img
           src="../assets/images/icon-carbon-neutral.svg"
@@ -15,7 +15,7 @@ export default function Order() {
         </p>
       </div>
 
-      <button className="confirm-order">Confirm Order</button>
+      <OrderButton onShowModal={onShowModal}>Confirm Order</OrderButton>
     </>
   );
 }

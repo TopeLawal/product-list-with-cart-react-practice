@@ -1,15 +1,20 @@
-export default function Cart(props) {
+export default function Cart({ cartItem, onHandleRemoveItem }) {
   return (
     <li className="cart-item-container">
       <div>
-        <h4>{props.name}</h4>
+        <h4>{cartItem.name}</h4>
         <div className="price-container">
-          <p className="quantity">1x</p>
-          <p className="unit-price">@${props.price}</p>
-          <p className="total-price"> @$5.50</p>
+          <p className="quantity">{cartItem.quantity}x</p>
+          <p className="unit-price">@${cartItem.price.toFixed(2)}</p>
+          <p className="total-price">
+            @${(cartItem.quantity * cartItem.price).toFixed(2)}
+          </p>
         </div>
       </div>
-      <button className="remove-item">
+      <button
+        className="remove-item"
+        onClick={() => onHandleRemoveItem(cartItem.id)}
+      >
         <img src="./assets/images/icon-remove-item.svg" alt="remove-item" />
       </button>
     </li>
