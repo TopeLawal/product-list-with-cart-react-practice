@@ -1,4 +1,3 @@
-import OrderButton from "./OrderButton";
 import OrderTotal from "./OrderTotal";
 
 export default function Order({ totalOrderPrice, onShowModal }) {
@@ -15,7 +14,9 @@ export default function Order({ totalOrderPrice, onShowModal }) {
         </p>
       </div>
 
-      <OrderButton onShowModal={onShowModal}>Confirm Order</OrderButton>
+      <button className="order-btn" onClick={onShowModal}>
+        Confirm Order
+      </button>
     </>
   );
 }

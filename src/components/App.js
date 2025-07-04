@@ -59,6 +59,11 @@ export default function App() {
     setShowModal(true);
   }
 
+  function handleReset() {
+    setCartItems([]);
+    setShowModal(false);
+  }
+
   function isProductInCart(productId) {
     return cartItems.findIndex((items) => items.id === productId) !== -1;
   }
@@ -66,7 +71,7 @@ export default function App() {
   return (
     <div className="container">
       <div className="product-section">
-        <h1>Dessert</h1>
+        <h1>Desserts</h1>
         <ProductList
           allProducts={products}
           cartItems={cartItems}
@@ -84,7 +89,11 @@ export default function App() {
         onShowModal={handleShowModal}
       />
       {showModal && (
-        <Modal cartItems={cartItems} totalOrderPrice={totalOrderPrice} />
+        <Modal
+          cartItems={cartItems}
+          totalOrderPrice={totalOrderPrice}
+          onReset={handleReset}
+        />
       )}
     </div>
   );

@@ -15,11 +15,17 @@ export default function Product({
   return (
     <li className="product-card">
       <div className="product-showcase">
-        <img
-          className={isProductInCart(product.id) ? "selected" : ""}
-          src={product.image.desktop}
-          alt={product.name}
-        />
+        <picture>
+          <source media="(min-width: 1024px)" srcSet={product.image.desktop} />
+          <source media="(min-width: 786px)" srcSet={product.image.tablet} />
+          <source media="(min-width: 767px)" srcSet={product.image.mobile} />
+          <img
+            className={isProductInCart(product.id) ? "selected" : ""}
+            src={product.image.mobile}
+            alt={product.name}
+            loading="lazy"
+          />
+        </picture>
         {isProductInCart(product.id) ? (
           <button className="set-quantity">
             <span onClick={() => onHandleDecrement(product.id)}>
@@ -55,7 +61,7 @@ export default function Product({
       <div className="desc">
         <p className="category">{product.category}</p>
         <h4>{product.name}</h4>
-        <p className="price">${product.price}</p>
+        <p className="price">${product.price.toFixed(2)}</p>
       </div>
     </li>
   );
